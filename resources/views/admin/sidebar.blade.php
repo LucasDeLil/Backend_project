@@ -1,5 +1,4 @@
 <div class="d-flex align-items-stretch">
-      <!-- Sidebar Navigation-->
       <nav id="sidebar">
         <!-- Sidebar Header-->
         <div class="sidebar-header d-flex align-items-center">
