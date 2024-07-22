@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', [HomeController::class, 'home']);
 
@@ -21,3 +22,8 @@ require __DIR__.'/auth.php';
 
 
 route::get('admin/dashboard', [HomeCOntroller::class, 'index'])->middleware(['auth','admin']);
+route::get('view_category', [AdminCOntroller::class, 'view_category'])->middleware(['auth','admin']);
+route::post('add_category', [AdminCOntroller::class, 'add_category'])->middleware(['auth','admin']);
+route::get('delete_category/{id}', [AdminCOntroller::class, 'delete_category'])->middleware(['auth','admin']);
+route::get('edit_category/{id}', [AdminCOntroller::class, 'edit_category'])->middleware(['auth','admin']);
+route::post('update_category/{id}', [AdminCOntroller::class, 'update_category'])->middleware(['auth','admin']);
