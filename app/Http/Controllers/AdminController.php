@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Category;
+use App\Models\Product;
 
 class AdminController extends Controller
 {
@@ -18,16 +19,16 @@ class AdminController extends Controller
     public function add_category(Request $request)
     {
 
-         $category = new Category;
+        $category = new Category;
 
 
-         $category->category_name = $request->category;
+        $category->category_name = $request->category;
 
-         $category->save();
+        $category->save();
 
-         toastr()->closeButton()->timeout(5000)->addSuccess('Category succesfully added!');
+        toastr()->closeButton()->timeout(5000)->addSuccess('Category succesfully added!');
 
-         return redirect()->back();
+        return redirect()->back();
     }
 
     public function delete_category($id)
@@ -52,12 +53,105 @@ class AdminController extends Controller
     {
         $data = Category::find($id);
 
-        $data->category_name= $request->category;
+        $data->category_name = $request->category;
 
         $data->save();
 
         toastr()->closeButton()->timeout(5000)->addSuccess('Category succesfully edited!');
 
         return redirect('/view_category');
+    }
+
+    public function add_product()
+    {
+        $category = Category::all();
+
+        return view('admin.add_product', compact('category'));
+    }
+
+    public function upload_product(Request $request)
+    {
+        $data = new Product;
+
+        $data->title = $request->title;
+        $data->description = $request->description;
+        $data->price = $request->price;
+        $data->quantity = $request->quantity;
+        $data->category = $request->category;
+
+        $image = $request->image;
+        if ($image) {
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $request->image->move('products', $imagename);
+            $data->image = $imagename;
+        }
+
+        $data->save();
+
+        toastr()->closeButton()->timeout(5000)->addSuccess('Product succesfully added!');
+
+        return redirect()->back();
+    }
+
+    public function view_product()
+    {
+        $product = Product::paginate(5);
+
+        return view('admin.view_product', compact('product'));
+    }
+
+    public function delete_product($id)
+    {
+        $data = Product::find($id);
+
+        $image_path = public_path('products/'.$data->image);
+
+        if (file_exists($image_path)) {
+            unlink($image_path);
+        }
+
+        $data->delete();
+
+        toastr()->closeButton()->timeout(5000)->addSuccess('Product succesfully deleted!');
+
+        return redirect()->back();
+    }
+
+    public function update_product($id)
+    {
+        $data = Product::find($id);
+
+        $category = Category::all();
+
+        return view('admin.update_product', compact('data', 'category'));
+    }
+
+    public function edit_product(Request $request, $id)
+    {
+        $data = Product::find($id);
+
+        $data->title = $request->title;
+        $data->description = $request->description;
+        $data->price = $request->price;
+        $data->quantity = $request->quantity;
+        $data->category = $request->category;
+
+        $image_path = public_path('products/'.$data->image);
+
+        if (file_exists($image_path)) {
+            unlink($image_path);
+        }
+        
+        $image = $request->image;
+        if ($image) {
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $request->image->move('products', $imagename);
+            $data->image = $imagename;
+        }
+        $data->save();
+
+        toastr()->closeButton()->timeout(5000)->addSuccess('Product succesfully added!');
+
+        return redirect()->back();
     }
 }

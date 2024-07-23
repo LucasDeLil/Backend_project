@@ -2,7 +2,7 @@
 <html>
 
 <head>
-@include('home.css')
+  @include('home.css')
 </head>
 
 <body>
@@ -17,10 +17,10 @@
     <!-- end slider section -->
   </div>
   <!-- end hero area -->
-  
+
   <!-- shop section -->
   @include('home.product')
-  
+
   <!-- end shop section -->
 
 
@@ -35,7 +35,7 @@
 
   <!-- end contact section -->
 
-   
+
 
   <!-- info section -->
 
