@@ -33,6 +33,12 @@
             border: 1px solid #4EFFEF;
             text-align: center;
         }
+        input[type='search']
+        {
+            width: 500px;
+            height: 40px;
+            margin-left: 50px;
+        }
     </style>
 </head>
 
@@ -45,6 +51,11 @@
         <div class="page-header">
             <div class="container-fluid">
                 <h1>View Products</h1>
+
+                <form action="{{url('product_search')}}" method="get">
+                    <input type="search" name="search">
+                    <input type="submit" class="btn btn-secondary" value="Search">
+                </form>
                 <div class="div_design">
 
                     <table class="table_design">

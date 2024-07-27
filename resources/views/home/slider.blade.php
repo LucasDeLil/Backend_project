@@ -9,19 +9,19 @@
                     <div class="detail-box"> 
                       <h1>
                         Welcome To Our <br>
-                        Gift Shop
+                        League Shop
                       </h1>
                       <p>
-                        Sequi perspiciatis nulla reiciendis, rem, tenetur impedit, eveniet non necessitatibus error distinctio mollitia suscipit. Nostrum fugit doloribus consequatur distinctio esse, possimus maiores aliquid repellat beatae cum, perspiciatis enim, accusantium perferendis.
+                        In this shop you can buy items from the world of Runeterra.
                       </p>
-                      <a href="">
+                      <a href="{{url('contact_us')}}">
                         Contact Us
                       </a>
                     </div>
                   </div>
                   <div class="col-md-5 ">
                     <div class="img-box">
-                      <img style="width:600px" src="images/image3.jpeg" alt="" />
+                      <img style="width:300px" src="images/LeagueLogo.png" alt="" />
                     </div>
                   </div>
                 </div>

@@ -1,8 +1,26 @@
-<section class="shop_section layout_padding">
+<!DOCTYPE html>
+<html>
+
+<head>
+  @include('home.css')
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    @include('home.header')
+    <!-- end header section -->
+
+  </div>
+  <!-- end hero area -->
+
+  <!-- shop section -->
+  
+  <section class="shop_section layout_padding">
   <div class="container">
     <div class="heading_container heading_center">
       <h2>
-        Latest Products
+        All the Items
       </h2>
     </div>
     <div class="row">
@@ -36,10 +54,26 @@
       @endforeach
     </div>
   </div>
-  <div class="btn-box">
-    <a href="{{url('shop')}}">
-      View All Products
-    </a>
-  </div>
+
   </div>
 </section>
+  <!-- end shop section -->
+
+
+
+  <!-- info section -->
+
+  @include('home.footer')
+
+  <!-- end info section -->
+
+
+  <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
+  <script src="{{asset('js/bootstrap.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <script src="{{asset('js/custom.js')}}"></script>
+
+</body>
+
+</html>

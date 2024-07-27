@@ -88,7 +88,7 @@ class AdminController extends Controller
 
         $data->save();
 
-        toastr()->closeButton()->timeout(5000)->addSuccess('Product succesfully added!');
+        toastr()->closeButton()->timeout(5000)->addSuccess('Product succesfully created!');
 
         return redirect()->back();
     }
@@ -153,5 +153,13 @@ class AdminController extends Controller
         toastr()->closeButton()->timeout(5000)->addSuccess('Product succesfully added!');
 
         return redirect()->back();
+    }
+    public function product_search(Request $request)
+    {
+        $search = $request->search;
+
+        $product = Product::where('title','LIKE','%'.$search.'%' )->orWhere('category','LIKE','%'.$search.'%')->paginate(3);
+
+        return view('admin.view_product', compact('product'));
     }
 }

@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Product;
+use App\Models\User;
+use App\Models\Cart;
+use App\Models\Contact;
+use Illuminate\Support\Facades\Auth;
+
 class HomeController extends Controller
 {
     public function index()
@@ -11,10 +17,210 @@ class HomeController extends Controller
         return view('admin.index');
     }
 
-        public function home()
+    public function home()
     {
-    return view('home.index');
+        $product = Product::paginate(8);
+
+        if(Auth::id())
+        {
+            $user = Auth::user();
+
+            $userid = $user->id;
+    
+            $count = Cart::where('user_id',$userid)->count();
+        }
+        else
+        {
+            $count = ' ';
+        }
+
+
+        return view('home.index', compact('product', "count"));
     }
+
+    public function login_home()
+    {
+        $product = Product::paginate(8);
+
+        if(Auth::id())
+        {
+            $user = Auth::user();
+
+            $userid = $user->id;
+    
+            $count = Cart::where('user_id',$userid)->count();
+        }
+        else
+        {
+            $count = ' ';
+        }
+        return view('home.index', compact('product', 'count'));
+    }
+
+    public function product_details($id)
+    {
+        $data = Product::find($id);
+
+        if(Auth::id())
+        {
+            $user = Auth::user();
+
+            $userid = $user->id;
+    
+            $count = Cart::where('user_id',$userid)->count();
+        }
+        else
+        {
+            $count = ' ';
+        }
+
+        return view ('home.product_details', compact('data', 'count'));
+    }
+
+    public function add_cart($id)
+    {
+        $product_id = $id;
+
+        $user = Auth::user();
+
+        $user_id = $user->id;
+
+        $data = new Cart;
+
+        $data->user_id = $user_id;
+        $data->product_id = $product_id;
+
+        $data->save();
+
+        toastr()->closeButton()->timeout(5000)->addSuccess('Product Successfully Added to the Cart!');
+
+        return redirect()->back();
+    }
+
+    public function mycart()
+    {
+        
+        if(Auth::id())
+        {
+            $user = Auth::user();
+
+            $userid = $user->id;
+    
+            $count = Cart::where('user_id',$userid)->count();
+
+            $cart = Cart::where('user_id',$userid)->get();
+        }
+        else
+        {
+            $count = ' ';
+        }
+
+        return view('home.mycart',compact('count', 'cart'));
+    }
+
+    public function remove_cart($id)
+    {
+        $data = Cart::find($id);
+
+        $data->delete();
+
+        toastr()->closeButton()->timeout(5000)->addSuccess('Product succesfully Removed from the cart!');
+
+        return redirect()->back();
+    }
+
+    public function shop()
+    {
+        $product = Product::all();
+
+        if(Auth::id())
+        {
+            $user = Auth::user();
+
+            $userid = $user->id;
+    
+            $count = Cart::where('user_id',$userid)->count();
+
+            $cart = Cart::where('user_id',$userid)->get();
+        }
+        else
+        {
+            $count = ' ';
+        }
+        return view('home.shop',compact('product','count'));
+    }
+
+    public function contact_us()
+    {
+        if(Auth::id())
+        {
+            $user = Auth::user();
+
+            $userid = $user->id;
+    
+            $count = Cart::where('user_id',$userid)->count();
+
+            $cart = Cart::where('user_id',$userid)->get();
+        }
+        else
+        {
+            $count = ' ';
+        }
+        return view('home.contact_us',compact('count'));
+    }
+
+    public function why_us()
+    {
+        if(Auth::id())
+        {
+            $user = Auth::user();
+
+            $userid = $user->id;
+    
+            $count = Cart::where('user_id',$userid)->count();
+
+            $cart = Cart::where('user_id',$userid)->get();
+        }
+        else
+        {
+            $count = ' ';
+        }
+        return view('home.why_us',compact('count'));
+    }
+
+    public function testimonial()
+    {
+        if(Auth::id())
+        {
+            $user = Auth::user();
+
+            $userid = $user->id;
+    
+            $count = Cart::where('user_id',$userid)->count();
+
+            $cart = Cart::where('user_id',$userid)->get();
+        }
+        else
+        {
+            $count = ' ';
+        }
+        return view('home.testimonial',compact('count'));
+    }
+
+    public function add_contact_message(Request $request)
+    {
+        $data = new Contact;
+
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->message = $request->message;
+       
+
+        $data->save();
+
+        toastr()->closeButton()->timeout(5000)->addSuccess('Message successfully sent!');
+
+        return redirect()->back();
+    }
+
 }
-
-

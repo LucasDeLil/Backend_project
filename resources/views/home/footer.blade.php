@@ -23,7 +23,7 @@
             ABOUT US
           </h6>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet,
+            I am a student from ersamus Hogeschool and this is a project I made for my Backend Web course. This is is basically a fictional shop for a game I like called League of Legends.
           </p>
         </div>
         <div class="col-md-6 col-lg-3">
