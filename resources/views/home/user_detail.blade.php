@@ -11,8 +11,8 @@
             align-items: center;
             padding: 30px;
         }
-        .detail-box
-        {
+
+        .detail-box {
             padding: 15px;
         }
     </style>
@@ -33,7 +33,7 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
-                {{$data->title}}
+                    Latest Products
                 </h2>
             </div>
             <div class="row">
@@ -43,31 +43,27 @@
                     <div class="box">
 
                         <div class="div_center">
-                            <img width="400" src="/products/{{$data->image}}" alt="">
+                            <img width="400" src="/users/{{$data->profile_pic}}" alt="">
                         </div>
                         <div class="detail-box">
-                            <h6>{{$data->title}}</h6>
-                            <h6>Price
-                                <span>${{$data->price}}</span>
+                            <h6>{{$data->name}}</h6>
+                            <h6>Birthday
+                                <span>{{$data->birthday}}</span>
                             </h6>
                         </div>
 
 
                         <div class="detail-box">
-                            <h6>Category : {{$data->category}}</h6>
-                            <h6>Available Quantity
-                                <span>{{$data->quantity}}</span>
-                            </h6>
-                        </div>
+                            <p style="font-weight: bold;">About Me:</p>
 
+
+                        </div>
                         <div class="detail-box">
 
 
-                                <p>{{$data->description}}</p>
-                                <a class="btn btn-primary" href="{{url('add_cart', $data->id)}}">Add to Cart</a>
+                            <p>{{$data->about_me}}</p>
                         </div>
                     </div>
-                    
                 </div>
 
             </div>

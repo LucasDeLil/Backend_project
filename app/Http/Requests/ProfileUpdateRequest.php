@@ -21,7 +21,7 @@ class ProfileUpdateRequest extends FormRequest
             'profile_pic' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'phone' => ['nullable', 'string', 'max:15'],
             'birthday' => ['nullable', 'date'],
-
+            'about_me' => ['nullable', 'string', 'max:512'],
         ];
     }
 }

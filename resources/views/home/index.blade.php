@@ -24,10 +24,10 @@
   <!-- end shop section -->
 
 
+<!--  user section -->
+  @include('home.other_users')
 
-
-
-
+<!-- END user section -->
 
   <!-- contact section -->
 

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Cart;
@@ -20,6 +19,8 @@ class HomeController extends Controller
 
     public function home()
     {
+        $users = User::all();
+
         $product = Product::paginate(8);
 
         if(Auth::id())
@@ -36,11 +37,13 @@ class HomeController extends Controller
         }
 
 
-        return view('home.index', compact('product', "count"));
+        return view('home.index', compact('product', "count", 'users'));
     }
 
     public function login_home()
     {
+        $users = User::all();
+
         $product = Product::paginate(8);
 
         if(Auth::id())
@@ -55,7 +58,7 @@ class HomeController extends Controller
         {
             $count = ' ';
         }
-        return view('home.index', compact('product', 'count'));
+        return view('home.index', compact('product', 'count', 'users'));
     }
 
     public function product_details($id)
@@ -234,32 +237,18 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function upload_product(Request $request)
+    public function other_users()
     {
-        $data = new Product;
+        $user = User::all();
 
-        $data->title = $request->title;
-        $data->description = $request->description;
-        $data->price = $request->price;
-        $data->quantity = $request->quantity;
-        $data->category = $request->category;
 
-        $image = $request->image;
-        if ($image) {
-            $imagename = time() . '.' . $image->getClientOriginalExtension();
-            $request->image->move('products', $imagename);
-            $data->image = $imagename;
-        }
-
-        $data->save();
-
-        toastr()->closeButton()->timeout(5000)->addSuccess('Product succesfully created!');
-
-        return redirect()->back();
+        return view('home.other_users', compact('user'));
     }
 
-    public function view_profile(User $user)
+    public function all_users()
     {
+        $users = User::all();
+
         if(Auth::id())
         {
             $user = Auth::user();
@@ -274,58 +263,26 @@ class HomeController extends Controller
         {
             $count = ' ';
         }
-
-        return view('home.view_profile', ['user' => $user], compact('count'));
-    }
-    public function show_edit_profile(User $user){
-        return view('home.profile', ['user' => $user]);
+        return view('home.all_users',compact('users','count'));
     }
 
-    public function update_profile($id)
+    public function user_detail($id)
     {
         $data = User::find($id);
 
-        $category = Category::all();
+        if(Auth::id())
+        {
+            $user = Auth::user();
 
-        return view('admin.update_product', compact('data', 'category'));
-    }
-
-    public function edit_product(Request $request, $id)
-    {
-        $data = Product::find($id);
-
-        $data->title = $request->title;
-        $data->description = $request->description;
-        $data->price = $request->price;
-        $data->quantity = $request->quantity;
-        $data->category = $request->category;
-
-        $image_path = public_path('products/'.$data->image);
-
-        if (file_exists($image_path)) {
-            unlink($image_path);
+            $userid = $user->id;
+    
+            $count = Cart::where('user_id',$userid)->count();
         }
-        
-        $image = $request->image;
-        if ($image) {
-            $imagename = time() . '.' . $image->getClientOriginalExtension();
-            $request->image->move('products', $imagename);
-            $data->image = $imagename;
+        else
+        {
+            $count = ' ';
         }
-        $data->save();
 
-        toastr()->closeButton()->timeout(5000)->addSuccess('Product succesfully Edited!');
-
-        return redirect()->back();
+        return view ('home.user_detail', compact('data', 'count'));
     }
-    public function product_search(Request $request)
-    {
-        $search = $request->search;
-
-        $product = Product::where('title','LIKE','%'.$search.'%' )->orWhere('category','LIKE','%'.$search.'%')->paginate(5);
-
-        return view('admin.view_product', compact('product'));
-    }
-
-
 }

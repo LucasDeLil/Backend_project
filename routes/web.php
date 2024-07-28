@@ -23,6 +23,9 @@ route::get('product_details/{id}', [HomeCOntroller::class, 'product_details']);
 route::get('shop', [HomeCOntroller::class, 'shop']);
 route::get('why_us', [HomeCOntroller::class, 'why_us']);
 route::get('testimonial', [HomeCOntroller::class, 'testimonial']);
+route::get('other_users', [HomeCOntroller::class, 'other_users']);
+route::get('all_users', [HomeCOntroller::class, 'all_users']);
+route::get('user_detail/{id}', [HomeCOntroller::class, 'user_detail']);
 
 route::get('contact_us', [HomeCOntroller::class, 'contact_us'])->middleware(['auth', 'verified']);
 route::post('add_contact_message', [HomeCOntroller::class, 'add_contact_message'])->middleware(['auth', 'verified']);
@@ -31,9 +34,7 @@ route::get('add_cart/{id}', [HomeCOntroller::class, 'add_cart'])->middleware(['a
 route::get('mycart', [HomeCOntroller::class, 'mycart'])->middleware(['auth', 'verified']);
 route::get('remove_cart/{id}', [HomeCOntroller::class, 'remove_cart'])->middleware(['auth', 'verified']);
 
-//route::get('view_profile', [HomeCOntroller::class, 'view_profile'])->middleware(['auth', 'verified']);
-//route::get('update_profile/{id}', [HomeCOntroller::class, 'update_profile'])->middleware(['auth', 'verified']);
-//route::post('edit_profile/{id}', [HomeCOntroller::class, 'edit_profile'])->middleware(['auth', 'verified']);
+
 
 //All admin routes
 route::get('admin/dashboard', [HomeCOntroller::class, 'index'])->middleware(['auth','admin']);

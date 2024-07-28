@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('usertype')->default('user');
             $table->string('profile_pic')->default('defaultprofile.png');
             $table->string('phone')->nullable();
+            $table->longText('about_me')->nullable();
+            $table->string('balance')->default(500);
             $table->date('birthday')->nullable();           
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
