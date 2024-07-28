@@ -50,7 +50,7 @@ td {
   <!-- end hero area -->
   <!-- contact section -->
 
-  @include('home.contact')
+  @include('Contact.contact')
 
   <!-- end contact section -->
   <h2 class="">

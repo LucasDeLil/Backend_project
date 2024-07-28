@@ -31,14 +31,14 @@ class ProfileController extends Controller
 
         $request->user()->fill($request->validated());
 
-        
+
 
         if ($request->hasFile('profile_pic')) {
             $profile_pic = $request->file('profile_pic');
             $imagename = time() . '.' . $profile_pic->getClientOriginalExtension();
             $profile_pic->move(public_path('users'), $imagename);
 
-            
+
             $user->profile_pic = $imagename;
         }
 

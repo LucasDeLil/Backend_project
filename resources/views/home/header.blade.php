@@ -30,12 +30,10 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{url('testimonial')}}">
-            Testimonial
-          </a>
+          <a class="nav-link" href="{{url('contact_us')}}">Contact Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{url('contact_us')}}">Contact Us</a>
+        <a class="nav-link" href="{{ route('faq.faq') }}">FAQ</a>
         </li>
       </ul>
       <div class="user_option">
@@ -43,6 +41,8 @@
         @if (Route::has('login'))
 
           @auth
+
+          
 
           <a href="{{url('mycart')}}">
             <i class="fa fa-shopping-bag" aria-hidden="true"></i>

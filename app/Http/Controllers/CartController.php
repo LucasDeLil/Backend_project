@@ -39,7 +39,7 @@ class CartController extends Controller
             $count = ' ';
         }
 
-        return view('home.mycart', compact('count', 'cart'));
+        return view('Cart.mycart', compact('count', 'cart'));
     }
 
     public function remove_cart($id)
@@ -75,7 +75,7 @@ class CartController extends Controller
 
         if ($user->balance < $totalPrice) {
             toastr()->closeButton()->timeout(5000)->addError('Insufficiant Gold!');
-            return view('home.mycart', compact('count', 'cart'));
+            return view('Cart.mycart', compact('count', 'cart'));
         }
 
         DB::transaction(function () use ($user, $cartItems, $totalPrice) {
@@ -101,7 +101,7 @@ class CartController extends Controller
 
 
 
-        toastr()->closeButton()->timeout(5000)->addSuccess('Product successfully Removed from the cart!');
+        toastr()->closeButton()->timeout(5000)->addSuccess('Product successfully Added to your Inventory!');
         return view('inventory.index', compact('products', 'count'));
     }
 

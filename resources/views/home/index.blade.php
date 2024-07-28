@@ -19,19 +19,19 @@
   <!-- end hero area -->
 
   <!-- shop section -->
-  @include('home.product')
+  @include('Product.product')
 
   <!-- end shop section -->
 
 
 <!--  user section -->
-  @include('home.other_users')
+  @include('User.other_users')
 
 <!-- END user section -->
 
   <!-- contact section -->
 
-  @include('home.contact')
+  @include('Contact.contact')
 
   <!-- end contact section -->
 
