@@ -13,9 +13,17 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
+        <div>
+              <label> Current Image</label>
+              <img height="250" width="250" src="/users/{{$user->profile_pic}}">
+            </div>
+            <div>
+              <label>New Image</label>
+              <input type="file" name="profile_pic">
+            </div>
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -45,6 +53,16 @@
                     @endif
                 </div>
             @endif
+        </div>
+        <div>
+            <x-input-label for="phone" :value="__('phone')" />
+            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $user->phone)" required autofocus autocomplete="phone" />
+            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+        </div>
+        <div>
+            <x-input-label for="birthday" :value="__('birthday')" />
+            <x-text-input id="birthday" name="birthday" type="date" class="mt-1 block w-full" :value="old('birthday', $user->birthday)" required autofocus autocomplete="birthday" />
+            <x-input-error class="mt-2" :messages="$errors->get('birthday')" />
         </div>
 
         <div class="flex items-center gap-4">

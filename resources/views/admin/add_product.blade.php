@@ -47,7 +47,7 @@
     <div class="page-content">
         <div class="page-header">
             <div class="container-fluid">
-                <h1>Add porduct</h1>
+                <h1>Add product</h1>
 
                 <div class="div_design">
                     <form action="{{url('upload_product')}}" method="post" enctype="multipart/form-data">

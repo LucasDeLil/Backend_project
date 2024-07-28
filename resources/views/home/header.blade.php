@@ -25,6 +25,11 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{{route('profile.edit')}}">
+            profile
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{url('testimonial')}}">
             Testimonial
           </a>
@@ -43,6 +48,7 @@
             <i class="fa fa-shopping-bag" aria-hidden="true"></i>
             [{{$count}}]
           </a>
+          
 
           <form style="padding: 15px" method="POST" action="{{ route('logout') }}">
             @csrf

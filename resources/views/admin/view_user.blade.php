@@ -61,6 +61,7 @@
                             <th>Usertype</th>
                             <th>Phone</th>
                             <th>Birthday</th>
+                            <th>Profile Picture</th>
                             <th>Delete</th>
                         </tr>
                         @foreach($user as $users)
@@ -70,6 +71,7 @@
                             <td>{{$users->usertype}}</td>
                             <td>{{$users->phone}}</td>
                             <td>{{$users->birthday}}</td>
+                            <td> <img height="120" width="120" src="users/{{$users->profile_pic}}" alt=""></td>
                             <td> <a class="btn btn-success" href="{{url('update_user',$users->id)}}">Edit</a></td>
                         </tr>
                         @endforeach
