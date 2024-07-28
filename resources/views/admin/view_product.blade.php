@@ -53,7 +53,7 @@
                 <h1>View Products</h1>
 
                 <form action="{{url('product_search')}}" method="get">
-                    <input type="search" name="search">
+                    <input type="search" name="search" value="Search for a product">
                     <input type="submit" class="btn btn-secondary" value="Search">
                 </form>
                 <div class="div_design">
