@@ -35,7 +35,7 @@ route::get('add_cart/{id}', [HomeCOntroller::class, 'add_cart'])->middleware(['a
 route::get('mycart', [HomeCOntroller::class, 'mycart'])->middleware(['auth', 'verified']);
 route::get('remove_cart/{id}', [HomeCOntroller::class, 'remove_cart'])->middleware(['auth', 'verified']);
 route::get('view_inventory', [CartController::class, 'view_inventory'])->middleware(['auth', 'verified']);
-
+Route::post('purchase', [CartController::class, 'purchase'])->middleware(['auth', 'verified']);
 
 
 //All admin routes
@@ -62,6 +62,6 @@ route::get('update_contact/{id}', [AdminCOntroller::class, 'update_contact'])->m
 route::post('edit_contact/{id}', [AdminCOntroller::class, 'edit_contact'])->middleware(['auth','admin']);
 
 
-Route::middleware('auth')->group(function () {
-Route::post('purchase', [CartController::class, 'purchase']);
-});
+
+
+
