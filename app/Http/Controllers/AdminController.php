@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\User;
 use App\Models\Category;
 use App\Models\Product;
 
@@ -150,7 +151,7 @@ class AdminController extends Controller
         }
         $data->save();
 
-        toastr()->closeButton()->timeout(5000)->addSuccess('Product succesfully added!');
+        toastr()->closeButton()->timeout(5000)->addSuccess('Product succesfully Edited!');
 
         return redirect()->back();
     }
@@ -161,5 +162,39 @@ class AdminController extends Controller
         $product = Product::where('title','LIKE','%'.$search.'%' )->orWhere('category','LIKE','%'.$search.'%')->paginate(3);
 
         return view('admin.view_product', compact('product'));
+    }
+
+    public function view_user()
+    {
+        $user = User::all();
+
+
+        return view('admin.view_user', compact('user'));
+    }
+
+    public function update_user($id)
+    {
+        $data = User::find($id);
+
+
+        return view('admin.update_user', compact('data'));
+    }
+
+    public function edit_user(Request $request, $id)
+    {
+        $data = User::find($id);
+
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->usertype = $request->usertype;
+        $data->phone = $request->phone;
+        $data->birthday = $request->birthday;
+
+        
+        $data->save();
+
+        toastr()->closeButton()->timeout(5000)->addSuccess('User succesfully Edited!');
+
+        return redirect()->back();
     }
 }

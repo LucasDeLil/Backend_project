@@ -46,3 +46,6 @@ route::get('delete_product/{id}', [AdminCOntroller::class, 'delete_product'])->m
 route::get('update_product/{id}', [AdminCOntroller::class, 'update_product'])->middleware(['auth','admin']);
 route::post('edit_product/{id}', [AdminCOntroller::class, 'edit_product'])->middleware(['auth','admin']);
 route::get('product_search', [AdminCOntroller::class, 'product_search'])->middleware(['auth','admin']);
+route::get('view_user', [AdminCOntroller::class, 'view_user'])->middleware(['auth','admin']);
+route::get('update_user/{id}', [AdminCOntroller::class, 'update_user'])->middleware(['auth','admin']);
+route::post('edit_user/{id}', [AdminCOntroller::class, 'edit_user'])->middleware(['auth','admin']);
