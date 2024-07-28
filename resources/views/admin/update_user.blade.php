@@ -5,6 +5,10 @@
   @include('admin.css')
 
   <style>
+    h1 {
+      color: white;
+    }
+
     .div_design {
       display: flex;
       justify-content: center;
@@ -22,15 +26,16 @@
       width: 300px;
       height: 60px;
     }
+
     input[type='email'] {
       width: 300px;
       height: 60px;
     }
+
     input[type='date'] {
       width: 300px;
       height: 60px;
     }
-
   </style>
 </head>
 
@@ -54,21 +59,21 @@
             <div>
               <label>Email</label>
               <input type="email" name="email" value="{{$data->email}}" readonly>
-            </div>     
+            </div>
             <div>
               <label>UserType</label>
               <input type="text" name="usertype" value="{{$data->usertype}}">Only one you can change
-              
-            </div>  
+
+            </div>
             <div>
               <label>Phone</label>
               <input type="text" name="phone" value="{{$data->phone}}" readonly>
-            </div>   
+            </div>
             <div>
               <label>Birthday</label>
               <input type="date" name="birthday" value="{{$data->birthday}}" readonly>
-            </div>   
-            <div>          
+            </div>
+            <div>
               <input class="btn btn-success" type="submit" value="Update User">
             </div>
           </form>

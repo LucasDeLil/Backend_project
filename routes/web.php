@@ -21,10 +21,11 @@ require __DIR__.'/auth.php';
 //All user routes
 route::get('product_details/{id}', [HomeCOntroller::class, 'product_details']);
 route::get('shop', [HomeCOntroller::class, 'shop']);
-route::get('contact_us', [HomeCOntroller::class, 'contact_us']);
 route::get('why_us', [HomeCOntroller::class, 'why_us']);
 route::get('testimonial', [HomeCOntroller::class, 'testimonial']);
-route::post('add_contact_message', [HomeCOntroller::class, 'add_contact_message']);
+
+route::get('contact_us', [HomeCOntroller::class, 'contact_us'])->middleware(['auth', 'verified']);
+route::post('add_contact_message', [HomeCOntroller::class, 'add_contact_message'])->middleware(['auth', 'verified']);
 
 route::get('add_cart/{id}', [HomeCOntroller::class, 'add_cart'])->middleware(['auth', 'verified']);
 route::get('mycart', [HomeCOntroller::class, 'mycart'])->middleware(['auth', 'verified']);
@@ -49,3 +50,6 @@ route::get('product_search', [AdminCOntroller::class, 'product_search'])->middle
 route::get('view_user', [AdminCOntroller::class, 'view_user'])->middleware(['auth','admin']);
 route::get('update_user/{id}', [AdminCOntroller::class, 'update_user'])->middleware(['auth','admin']);
 route::post('edit_user/{id}', [AdminCOntroller::class, 'edit_user'])->middleware(['auth','admin']);
+route::get('view_contact', [AdminCOntroller::class, 'view_contact'])->middleware(['auth','admin']);
+route::get('update_contact/{id}', [AdminCOntroller::class, 'update_contact'])->middleware(['auth','admin']);
+route::post('edit_contact/{id}', [AdminCOntroller::class, 'edit_contact'])->middleware(['auth','admin']);

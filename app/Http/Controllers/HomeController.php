@@ -152,6 +152,7 @@ class HomeController extends Controller
 
     public function contact_us()
     {
+
         if(Auth::id())
         {
             $user = Auth::user();
@@ -161,12 +162,14 @@ class HomeController extends Controller
             $count = Cart::where('user_id',$userid)->count();
 
             $cart = Cart::where('user_id',$userid)->get();
+
+            $contact = Contact::where('user_id',$userid)->get();
         }
         else
         {
             $count = ' ';
         }
-        return view('home.contact_us',compact('count'));
+        return view('home.contact_us',compact('count', 'contact'));
     }
 
     public function why_us()
@@ -209,8 +212,15 @@ class HomeController extends Controller
 
     public function add_contact_message(Request $request)
     {
+
+
+        $user = Auth::user();
+
+        $user_id = $user->id;
+
         $data = new Contact;
 
+        $data->user_id = $user_id;
         $data->name = $request->name;
         $data->email = $request->email;
         $data->message = $request->message;
@@ -222,5 +232,7 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+
+
 
 }

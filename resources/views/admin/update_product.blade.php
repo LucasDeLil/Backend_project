@@ -5,6 +5,10 @@
   @include('admin.css')
 
   <style>
+    h1 {
+      color: white;
+    }
+
     .div_design {
       display: flex;
       justify-content: center;

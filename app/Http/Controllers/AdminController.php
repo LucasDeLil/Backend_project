@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Product;
 
 class AdminController extends Controller
@@ -194,6 +195,40 @@ class AdminController extends Controller
         $data->save();
 
         toastr()->closeButton()->timeout(5000)->addSuccess('User succesfully Edited!');
+
+        return redirect()->back();
+    }
+
+    public function view_contact()
+    {
+        $contact = Contact::all();
+
+
+        return view('admin.view_contact', compact('contact'));
+    }
+
+    public function update_contact($id)
+    {
+        $data = Contact::find($id);
+
+
+        return view('admin.update_contact', compact('data'));
+    }
+
+    public function edit_contact(Request $request, $id)
+    {
+        $data = Contact::find($id);
+
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->message = $request->message;
+        $data->response = $request->response;
+        $data->status = $request->status;
+
+        
+        $data->save();
+
+        toastr()->closeButton()->timeout(5000)->addSuccess('Answer succesfully Sent!');
 
         return redirect()->back();
     }
