@@ -49,7 +49,7 @@
             [{{$count}}]
           </a>
           
-
+          <a class="nav-link" href="{{url('view_inventory')}}">Inventory</a>
           <form style="padding: 15px" method="POST" action="{{ route('logout') }}">
             @csrf
 

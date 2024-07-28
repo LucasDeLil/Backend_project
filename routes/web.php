@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 
 Route::get('/', [HomeController::class, 'home']);
 Route::get('/dashboard', [HomeController::class, 'login_home'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -33,6 +34,7 @@ route::post('add_contact_message', [HomeCOntroller::class, 'add_contact_message'
 route::get('add_cart/{id}', [HomeCOntroller::class, 'add_cart'])->middleware(['auth', 'verified']);
 route::get('mycart', [HomeCOntroller::class, 'mycart'])->middleware(['auth', 'verified']);
 route::get('remove_cart/{id}', [HomeCOntroller::class, 'remove_cart'])->middleware(['auth', 'verified']);
+route::get('view_inventory', [CartController::class, 'view_inventory'])->middleware(['auth', 'verified']);
 
 
 
@@ -58,3 +60,8 @@ route::post('edit_user/{id}', [AdminCOntroller::class, 'edit_user'])->middleware
 route::get('view_contact', [AdminCOntroller::class, 'view_contact'])->middleware(['auth','admin']);
 route::get('update_contact/{id}', [AdminCOntroller::class, 'update_contact'])->middleware(['auth','admin']);
 route::post('edit_contact/{id}', [AdminCOntroller::class, 'edit_contact'])->middleware(['auth','admin']);
+
+
+Route::middleware('auth')->group(function () {
+Route::post('purchase', [CartController::class, 'purchase']);
+});
