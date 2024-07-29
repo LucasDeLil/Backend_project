@@ -44,7 +44,7 @@
             NEED HELP
           </h6>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet,
+            Don't hesitate to contact us!
           </p>
         </div>
         <div class="col-md-6 col-lg-3">
@@ -54,15 +54,15 @@
           <div class="info_link-box">
             <a href="">
               <i class="fa fa-map-marker" aria-hidden="true"></i>
-              <span> Gb road 123 london Uk </span>
+              <span>  Nijverheidskaai 170, 1070 Anderlecht </span>
             </a>
             <a href="">
               <i class="fa fa-phone" aria-hidden="true"></i>
-              <span>+01 12345678901</span>
+              <span>+32 12345678901</span>
             </a>
             <a href="">
               <i class="fa fa-envelope" aria-hidden="true"></i>
-              <span> demo@gmail.com</span>
+              <span> demo@ehb.be</span>
             </a>
           </div>
         </div>
@@ -74,7 +74,7 @@
     <div class="container">
       <p>
         &copy; <span id="displayYear"></span> All Rights Reserved By
-        <a href="https://html.design/">Web Tech Knowledge</a>
+        <a href="https://html.design/">Lucas De Lil 2BaTI</a>
       </p>
     </div>
   </footer>

@@ -75,7 +75,7 @@ class CartController extends Controller
 
         if ($user->balance < $totalPrice) {
             toastr()->closeButton()->timeout(5000)->addError('Insufficiant Gold!');
-            return view('Cart.mycart', compact('count', 'cart'));
+            return redirect()->back();
         }
 
         DB::transaction(function () use ($user, $cartItems, $totalPrice) {

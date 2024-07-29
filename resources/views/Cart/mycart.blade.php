@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     @include('home.css')
@@ -44,6 +44,33 @@
             align-items: center;
             margin-top: 20px;
         }
+
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loading-overlay .spinner {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 
@@ -68,8 +95,8 @@
             <tr>
                 <td>{{ $cartItem->product->title }}</td>
                 <td>{{ $cartItem->product->price }}</td>
-                <td><img height="120" width="120" src="products/{{ $cartItem->product->image }}" alt=""></td>
-                <td><a class="btn btn-danger" onclick="confirmation(event)" href="{{ url('remove_cart', $cartItem->id) }}">Remove</a></td>
+                <td><img height="120" width="120" src="products/{{ $cartItem->product->image }}" alt="{{ $cartItem->product->title }}"></td>
+                <td><a class="btn btn-danger" href="{{ url('remove_cart', $cartItem->id) }}">Remove</a></td>
             </tr>
 
             @php
@@ -84,10 +111,14 @@
     </div>
 
     <div class="purchase_button">
-        <form action="{{ url('purchase') }}" method="POST">
+        <form action="{{ url('purchase') }}" method="POST" id="purchase-form">
             @csrf
             <button type="submit" class="btn btn-success">Purchase</button>
         </form>
+    </div>
+
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="spinner"></div>
     </div>
 
     @include('home.footer')
@@ -96,26 +127,6 @@
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
-
-    <script>
-        function confirmation(ev) {
-            ev.preventDefault();
-            var urlToRedirect = ev.currentTarget.getAttribute('href');
-
-            swal({
-                title: "Are you sure to DELETE this?",
-                text: "This delete will be permanent",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            }).then((willDelete) => {
-                if (willDelete) {
-                    window.location.href = urlToRedirect;
-                }
-            });
-        }
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
 </html>
