@@ -23,6 +23,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+//ABOUT
+route::get('about', [HomeController::class, 'about']);
 //All Home and user Routes
 route::get('product_details/{id}', [ProductController::class, 'product_details']);
 route::get('shop', [ProductController::class, 'shop']);

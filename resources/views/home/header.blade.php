@@ -47,6 +47,8 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a>
+                
+                <a class="dropdown-item" href="{{ url('about') }}">About</a>
                 <form method="POST" action="{{ route('logout') }}">
                   @csrf
                   <button class="dropdown-item" type="submit">Logout</button>

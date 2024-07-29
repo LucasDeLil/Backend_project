@@ -68,4 +68,22 @@ class HomeController extends Controller
         return view('home.why_us', compact('count'));
     }
 
+    public function about()
+    {
+
+        if (Auth::id()) {
+            $user = Auth::user();
+
+            $userid = $user->id;
+
+            $count = Cart::where('user_id', $userid)->count();
+
+            $cart = Cart::where('user_id', $userid)->get();
+        } else {
+            $count = ' ';
+        }
+
+        return view('about', compact('count'));
+    }
+
 }
